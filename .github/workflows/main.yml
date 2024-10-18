@@ -33,7 +33,7 @@ jobs:
       - name: Restart server
         uses: appleboy/ssh-action@v0.1.5
         with:
-          host: mi3-ss26.a2hosting.com
+          host: ${{ secrets.SEANRAD_SSH_HOST }}
           username: root
           key: ${{ secrets.SEANRAD_SSH_PRIVATE_KEY }}
           script: |
