@@ -33,30 +33,33 @@ const headers = {
 
 // Step 4: Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
-  const twelveDataRepsponse = await fetch(twelveDataURL);
-  const twelveData = await twelveDataRepsponse.json();
+  const twelveDataResponse = await fetch(twelveDataURL);
+  if (!twelveDataResponse.ok) throw new Error("Failed to fetch twelveData");
+  const twelveData = await twelveDataResponse.json();
+
   const nyTimesResponse = await fetch(nyTimes);
+  if (!nyTimesResponse.ok) throw new Error("Failed to fetch NY Times data");
   const nyTimesData = await nyTimesResponse.json();
 
   // const redditResponse1 = await fetch(redditURL1, { headers });
-  // const redditData1 = await redditResponse1.json(
-  //   JSON.stringify(redditResponse1)
-  // );
+  // if (!redditResponse1.ok)
+  //   throw new Error("Failed to fetch Reddit data for /r/science");
+  // const redditData1 = await redditResponse1.json();
 
   // const redditResponse2 = await fetch(redditURL2, { headers });
-  // const redditData2 = await redditResponse2.json(
-  //   JSON.stringify(redditResponse2)
-  // );
+  // if (!redditResponse2.ok)
+  //   throw new Error("Failed to fetch Reddit data for /r/programming");
+  // const redditData2 = await redditResponse2.json();
 
   // const redditResponse3 = await fetch(redditURL3, { headers });
-  // const redditData3 = await redditResponse3.json(
-  //   JSON.stringify(redditResponse3)
-  // );
+  // if (!redditResponse3.ok)
+  //   throw new Error("Failed to fetch Reddit data for /r/webdev");
+  // const redditData3 = await redditResponse3.json();
 
   // const redditResponse4 = await fetch(redditURL4, { headers });
-  // const redditData4 = await redditResponse4.json(
-  //   JSON.stringify(redditResponse4)
-  // );
+  // if (!redditResponse4.ok)
+  //   throw new Error("Failed to fetch Reddit data for /r/technology");
+  // const redditData4 = await redditResponse4.json();
 
   // The stock prices are ${formattedStockPrices}
 
