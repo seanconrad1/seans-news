@@ -34,16 +34,24 @@ app.get("/news", async (req, res) => {
   const nyTimesData = await nyTimesResponse.json();
 
   const redditResponse1 = await fetch(redditURL1);
-  const redditData1 = await redditResponse1.json();
+  const redditData1 = await redditResponse1.json(
+    JSON.stringify(redditResponse1)
+  );
 
   const redditResponse2 = await fetch(redditURL2);
-  const redditData2 = await redditResponse2.json();
+  const redditData2 = await redditResponse2.json(
+    JSON.stringify(redditResponse2)
+  );
 
   const redditResponse3 = await fetch(redditURL3);
-  const redditData3 = await redditResponse3.json();
+  const redditData3 = await redditResponse3.json(
+    JSON.stringify(redditResponse3)
+  );
 
   const redditResponse4 = await fetch(redditURL4);
-  const redditData4 = await redditResponse4.json();
+  const redditData4 = await redditResponse4.json(
+    JSON.stringify(redditResponse4)
+  );
 
   // const twelveDataObject = {
   //   AAPL: "233",
