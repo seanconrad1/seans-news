@@ -108,7 +108,7 @@ app.get("/news", async (req, res) => {
   // ${redditData4.data.children[0].data.selftext}
 
   // `;
-  // const sentence = "Hello World";
+  const sentence = "Hello World";
 
   res.send(sentence);
 });
