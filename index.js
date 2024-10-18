@@ -34,12 +34,22 @@ const headers = {
 // Step 4: Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
   try {
+    // Fetch TwelveData API response
     const twelveDataResponse = await fetch(twelveDataURL);
-    if (!twelveDataResponse.ok) throw new Error("Failed to fetch twelveData");
+    if (!twelveDataResponse.ok) {
+      throw new Error(
+        `Failed to fetch TwelveData: ${twelveDataResponse.statusText}`
+      );
+    }
     const twelveData = await twelveDataResponse.json();
 
+    // Fetch NY Times API response
     const nyTimesResponse = await fetch(nyTimes);
-    if (!nyTimesResponse.ok) throw new Error("Failed to fetch NY Times data");
+    if (!nyTimesResponse.ok) {
+      throw new Error(
+        `Failed to fetch NY Times data: ${nyTimesResponse.statusText}`
+      );
+    }
     const nyTimesData = await nyTimesResponse.json();
 
     // const redditResponse1 = await fetch(redditURL1, { headers });
@@ -116,8 +126,22 @@ app.get("/news", async (req, res) => {
 
     res.send(sentence);
   } catch (error) {
-    console.error(error);
-    res.status(500).send("An error occurred. Please try again later.");
+    console.error("Error fetching data:", error.message);
+
+    // Send a more specific error response to the client
+    if (error.message.includes("TwelveData")) {
+      res
+        .status(500)
+        .send("Error fetching stock market data. Please try again later.");
+    } else if (error.message.includes("NY Times")) {
+      res
+        .status(500)
+        .send("Error fetching news from NY Times. Please try again later.");
+    } else {
+      res
+        .status(500)
+        .send("An unexpected error occurred. Please try again later.");
+    }
   }
 });
 
