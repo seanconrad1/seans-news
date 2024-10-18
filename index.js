@@ -118,7 +118,7 @@ app.get("/news", async (req, res) => {
     // ${redditData4.data.children[0].data.selftext}
 
     const sentence = `
-      The stock prices are ${formattedStockPrices}
+      The stock prices are ${formattedStockPrices},
       The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
   `;
 
