@@ -1,29 +1,18 @@
 import fetch from "node-fetch";
 export const getRedditPosts = async (subreddit) => {
   try {
+    const url = `https://www.reddit.com/r/${subreddit}/top/.json`;
+    const options = {
+      method: "GET",
+      headers: {
+        Cookie:
+          "csv=2; edgebucket=LAiRL6HEwqLJXVceFk; loid=000000001b465w4vjk.2.1729272246308.Z0FBQUFBQm5FcG0yMlRCSmlKSHc2Z3FRaDFDQjFoYXFMd2JycS1WMWE2TXF0WUt2RXBiV2UwQmYtelRjdUNsUjlvZUQtdzI3WWRIdVlqdldDMlVpLXRLVlhkTEhEUlh1R1Fnc1NSYkZnREJsV1pnakpHajZFWl9SN3ZBUzFkbUx0QUN2VjM1dEY1ZzA; session_tracker=hffmlargnkkcajaonb.0.1729272246319.Z0FBQUFBQm5FcG0yd25XWV8tNmNjeVp3UzgydzczX2EzMFBUVGN2V1hGanR3NHVmWjV3bVRZcTlkaS1rRkxCTUtMZzYzVHdrQUJqN1BQQkpmM2kxRDdpVmpEd2U2OE1DbHppNUthdDk5bF9ta1VINXN0QTZuN1BVRHdMYzlPNUlCSnRGaWlGUDd1eDA",
+      },
+    };
+
     const response = await fetch(
       `https://www.reddit.com/r/${subreddit}/top/.json`,
-      {
-        headers: {
-          accept:
-            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-          "accept-language": "en-US,en;q=0.9",
-          "cache-control": "max-age=0",
-          priority: "u=0, i",
-          "sec-ch-ua":
-            '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
-          "sec-ch-ua-mobile": "?0",
-          "sec-ch-ua-platform": '"macOS"',
-          "sec-fetch-dest": "document",
-          "sec-fetch-mode": "navigate",
-          "sec-fetch-site": "none",
-          "sec-fetch-user": "?1",
-          "upgrade-insecure-requests": "1",
-        },
-        referrerPolicy: "strict-origin-when-cross-origin",
-        body: null,
-        method: "GET",
-      }
+      options
     );
     if (!response.ok)
       throw new Error(
