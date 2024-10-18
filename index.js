@@ -58,25 +58,27 @@ app.get("/news", async (req, res) => {
   //   JSON.stringify(redditResponse4)
   // );
 
+  // The stock prices are ${formattedStockPrices}
+
   // const twelveDataObject = {
   //   AAPL: "233",
   //   TSLA: "222",
   //   NVDA: "140",
   //   AMZN: "188",
   // };
-  const twelveDataObject = {};
+  // const twelveDataObject = {};
 
-  Object.keys(twelveData).forEach((key) => {
-    twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
-  });
+  // Object.keys(twelveData).forEach((key) => {
+  //   twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
+  // });
 
-  // Step 2: Extract keys and values
-  const stockEntries = Object.entries(twelveDataObject);
+  // // Step 2: Extract keys and values
+  // const stockEntries = Object.entries(twelveDataObject);
 
-  // Step 3: Format the data into the desired string format
-  const formattedStockPrices = stockEntries
-    .map(([symbol, price]) => `${symbol} ${price}`)
-    .join(", ");
+  // // Step 3: Format the data into the desired string format
+  // const formattedStockPrices = stockEntries
+  //   .map(([symbol, price]) => `${symbol} ${price}`)
+  //   .join(", ");
 
   const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
 
@@ -105,7 +107,6 @@ app.get("/news", async (req, res) => {
 
   The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
 
-  The stock prices are ${formattedStockPrices}
 
   `;
 
