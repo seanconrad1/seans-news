@@ -11,7 +11,7 @@ const port = 3000;
 
 const twelveDataApiKey = process.env.TWELVE_DATA_API_KEY;
 const nYTimesApiKey = process.env.NY_TIMES_API_KEY;
-const subreddits = ["science", "programming", "webdev", "technology"];
+const subreddits = ["science", "programming", "webdev", "technology", "node"];
 const tickers = ["AAPL", "TSLA", "NVDA", "AMZN"];
 const NUMBER_OF_NEWS_STORIES = 3;
 
@@ -31,6 +31,8 @@ const twelveDataURL = `https://api.twelvedata.com/time_series?symbol=${tickers.j
 
 const nyTimes = `https://api.nytimes.com/svc/topstories/v2/world.json?api-key=
 ${nYTimesApiKey}`;
+
+app.get("/authorize-reddit-callback", async (req, res) => {});
 
 // Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
