@@ -64,27 +64,21 @@ app.get("/news", async (req, res) => {
   //   NVDA: "140",
   //   AMZN: "188",
   // };
-  // const twelveDataObject = {};
+  const twelveDataObject = {};
 
-  // Object.keys(twelveData).forEach((key) => {
-  //   twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
-  // });
+  Object.keys(twelveData).forEach((key) => {
+    twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
+  });
 
-  // // Step 2: Extract keys and values
-  // const stockEntries = Object.entries(twelveDataObject);
+  // Step 2: Extract keys and values
+  const stockEntries = Object.entries(twelveDataObject);
 
-  // // Step 3: Format the data into the desired string format
-  // const formattedStockPrices = stockEntries
-  //   .map(([symbol, price]) => `${symbol} ${price}`)
-  //   .join(", ");
+  // Step 3: Format the data into the desired string format
+  const formattedStockPrices = stockEntries
+    .map(([symbol, price]) => `${symbol} ${price}`)
+    .join(", ");
 
-  // const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
-
-  // const sentence = `
-
-  // The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
-
-  // The stock prices are ${formattedStockPrices}
+  const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
 
   // Hot reddit posts:
   // r/${redditData1.data.children[0].data.subreddit}: ${
@@ -107,8 +101,13 @@ app.get("/news", async (req, res) => {
   // }
   // ${redditData4.data.children[0].data.selftext}
 
-  // `;
-  const sentence = "Hello World";
+  const sentence = `
+
+  The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
+
+  The stock prices are ${formattedStockPrices}
+
+  `;
 
   res.send(sentence);
 });
