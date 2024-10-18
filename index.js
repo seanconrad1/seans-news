@@ -33,81 +33,81 @@ const headers = {
 
 // Step 4: Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
-  const twelveDataRepsponse = await fetch(twelveDataURL);
-  const twelveData = await twelveDataRepsponse.json();
-  const nyTimesResponse = await fetch(nyTimes);
-  const nyTimesData = await nyTimesResponse.json();
+  // const twelveDataRepsponse = await fetch(twelveDataURL);
+  // const twelveData = await twelveDataRepsponse.json();
+  // const nyTimesResponse = await fetch(nyTimes);
+  // const nyTimesData = await nyTimesResponse.json();
 
-  const redditResponse1 = await fetch(redditURL1, { headers });
-  const redditData1 = await redditResponse1.json(
-    JSON.stringify(redditResponse1)
-  );
+  // const redditResponse1 = await fetch(redditURL1, { headers });
+  // const redditData1 = await redditResponse1.json(
+  //   JSON.stringify(redditResponse1)
+  // );
 
-  const redditResponse2 = await fetch(redditURL2, { headers });
-  const redditData2 = await redditResponse2.json(
-    JSON.stringify(redditResponse2)
-  );
+  // const redditResponse2 = await fetch(redditURL2, { headers });
+  // const redditData2 = await redditResponse2.json(
+  //   JSON.stringify(redditResponse2)
+  // );
 
-  const redditResponse3 = await fetch(redditURL3, { headers });
-  const redditData3 = await redditResponse3.json(
-    JSON.stringify(redditResponse3)
-  );
+  // const redditResponse3 = await fetch(redditURL3, { headers });
+  // const redditData3 = await redditResponse3.json(
+  //   JSON.stringify(redditResponse3)
+  // );
 
-  const redditResponse4 = await fetch(redditURL4, { headers });
-  const redditData4 = await redditResponse4.json(
-    JSON.stringify(redditResponse4)
-  );
+  // const redditResponse4 = await fetch(redditURL4, { headers });
+  // const redditData4 = await redditResponse4.json(
+  //   JSON.stringify(redditResponse4)
+  // );
 
-  const twelveDataObject = {
-    AAPL: "233",
-    TSLA: "222",
-    NVDA: "140",
-    AMZN: "188",
-  };
-  const twelveDataObject = {};
+  // const twelveDataObject = {
+  //   AAPL: "233",
+  //   TSLA: "222",
+  //   NVDA: "140",
+  //   AMZN: "188",
+  // };
+  // const twelveDataObject = {};
 
-  Object.keys(twelveData).forEach((key) => {
-    twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
-  });
+  // Object.keys(twelveData).forEach((key) => {
+  //   twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
+  // });
 
-  // Step 2: Extract keys and values
-  const stockEntries = Object.entries(twelveDataObject);
+  // // Step 2: Extract keys and values
+  // const stockEntries = Object.entries(twelveDataObject);
 
-  // Step 3: Format the data into the desired string format
-  const formattedStockPrices = stockEntries
-    .map(([symbol, price]) => `${symbol} ${price}`)
-    .join(", ");
+  // // Step 3: Format the data into the desired string format
+  // const formattedStockPrices = stockEntries
+  //   .map(([symbol, price]) => `${symbol} ${price}`)
+  //   .join(", ");
 
-  const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
+  // const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
 
-  const sentence = `
+  // const sentence = `
 
-  The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
+  // The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
 
-  The stock prices are ${formattedStockPrices}
+  // The stock prices are ${formattedStockPrices}
 
-  Hot reddit posts:
-  r/${redditData1.data.children[0].data.subreddit}: ${
-    redditData1.data.children[0].data.title
-  }
-  ${redditData1.data.children[0].data.selftext}
+  // Hot reddit posts:
+  // r/${redditData1.data.children[0].data.subreddit}: ${
+  //   redditData1.data.children[0].data.title
+  // }
+  // ${redditData1.data.children[0].data.selftext}
 
-  r/${redditData2.data.children[0].data.subreddit}: ${
-    redditData2.data.children[0].data.title
-  }
-  ${redditData2.data.children[0].data.selftext}
+  // r/${redditData2.data.children[0].data.subreddit}: ${
+  //   redditData2.data.children[0].data.title
+  // }
+  // ${redditData2.data.children[0].data.selftext}
 
-  r/${redditData3.data.children[0].data.subreddit}: ${
-    redditData3.data.children[0].data.title
-  }
-  ${redditData3.data.children[0].data.selftext}
+  // r/${redditData3.data.children[0].data.subreddit}: ${
+  //   redditData3.data.children[0].data.title
+  // }
+  // ${redditData3.data.children[0].data.selftext}
 
-  r/${redditData4.data.children[0].data.subreddit}: ${
-    redditData4.data.children[0].data.title
-  }
-  ${redditData4.data.children[0].data.selftext}
+  // r/${redditData4.data.children[0].data.subreddit}: ${
+  //   redditData4.data.children[0].data.title
+  // }
+  // ${redditData4.data.children[0].data.selftext}
 
-  `;
+  // `;
   // const sentence = "Hello World";
 
   res.send(sentence);
