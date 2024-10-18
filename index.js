@@ -54,25 +54,33 @@ app.get("/news", async (req, res) => {
     }
     const nyTimesData = await nyTimesResponse.json();
 
-    // const redditResponse1 = await fetch(redditURL1, { headers });
-    // if (!redditResponse1.ok)
-    //   throw new Error("Failed to fetch Reddit data for /r/science");
-    // const redditData1 = await redditResponse1.json();
+    const redditResponse1 = await fetch(redditURL1, { headers });
+    if (!redditResponse1.ok)
+      throw new Error(
+        `Failed to fetch data for /r/science: ${redditResponse1.statusText}`
+      );
+    const redditData1 = await redditResponse1.json();
 
-    // const redditResponse2 = await fetch(redditURL2, { headers });
-    // if (!redditResponse2.ok)
-    //   throw new Error("Failed to fetch Reddit data for /r/programming");
-    // const redditData2 = await redditResponse2.json();
+    const redditResponse2 = await fetch(redditURL2, { headers });
+    if (!redditResponse2.ok)
+      throw new Error(
+        `Failed to fetch data for /r/programming: ${redditResponse1.statusText}`
+      );
+    const redditData2 = await redditResponse2.json();
 
-    // const redditResponse3 = await fetch(redditURL3, { headers });
-    // if (!redditResponse3.ok)
-    //   throw new Error("Failed to fetch Reddit data for /r/webdev");
-    // const redditData3 = await redditResponse3.json();
+    const redditResponse3 = await fetch(redditURL3, { headers });
+    if (!redditResponse3.ok)
+      throw new Error(
+        `Failed to fetch data for /r/webdev: ${redditResponse1.statusText}`
+      );
+    const redditData3 = await redditResponse3.json();
 
-    // const redditResponse4 = await fetch(redditURL4, { headers });
-    // if (!redditResponse4.ok)
-    //   throw new Error("Failed to fetch Reddit data for /r/technology");
-    // const redditData4 = await redditResponse4.json();
+    const redditResponse4 = await fetch(redditURL4, { headers });
+    if (!redditResponse4.ok)
+      throw new Error(
+        `Failed to fetch data for /r/technology: ${redditResponse1.statusText}`
+      );
+    const redditData4 = await redditResponse4.json();
 
     // const twelveDataObject = {
     //   AAPL: "233",
@@ -101,30 +109,30 @@ app.get("/news", async (req, res) => {
       ...nyTimesData.results.slice(0, NUMBER_OF_NEWS_STORIES),
     ];
 
-    // Hot reddit posts:
-    // r/${redditData1.data.children[0].data.subreddit}: ${
-    //   redditData1.data.children[0].data.title
-    // }
-    // ${redditData1.data.children[0].data.selftext}
-
-    // r/${redditData2.data.children[0].data.subreddit}: ${
-    //   redditData2.data.children[0].data.title
-    // }
-    // ${redditData2.data.children[0].data.selftext}
-
-    // r/${redditData3.data.children[0].data.subreddit}: ${
-    //   redditData3.data.children[0].data.title
-    // }
-    // ${redditData3.data.children[0].data.selftext}
-
-    // r/${redditData4.data.children[0].data.subreddit}: ${
-    //   redditData4.data.children[0].data.title
-    // }
-    // ${redditData4.data.children[0].data.selftext}
-
     const sentence = `
       The stock prices are ${formattedStockPrices},
       The top news stories are ${nyTimesObj.map((obj) => obj.title).join(",")}
+
+        Hot reddit posts:
+    r/${redditData1.data.children[0].data.subreddit}: ${
+      redditData1.data.children[0].data.title
+    }
+    ${redditData1.data.children[0].data.selftext}
+
+    r/${redditData2.data.children[0].data.subreddit}: ${
+      redditData2.data.children[0].data.title
+    }
+    ${redditData2.data.children[0].data.selftext}
+
+    r/${redditData3.data.children[0].data.subreddit}: ${
+      redditData3.data.children[0].data.title
+    }
+    ${redditData3.data.children[0].data.selftext}
+
+    r/${redditData4.data.children[0].data.subreddit}: ${
+      redditData4.data.children[0].data.title
+    }
+    ${redditData4.data.children[0].data.selftext}
   `;
 
     res.send(sentence);
