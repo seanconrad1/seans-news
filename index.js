@@ -33,10 +33,10 @@ const headers = {
 
 // Step 4: Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
-  // const twelveDataRepsponse = await fetch(twelveDataURL);
-  // const twelveData = await twelveDataRepsponse.json();
-  // const nyTimesResponse = await fetch(nyTimes);
-  // const nyTimesData = await nyTimesResponse.json();
+  const twelveDataRepsponse = await fetch(twelveDataURL);
+  const twelveData = await twelveDataRepsponse.json();
+  const nyTimesResponse = await fetch(nyTimes);
+  const nyTimesData = await nyTimesResponse.json();
 
   // const redditResponse1 = await fetch(redditURL1, { headers });
   // const redditData1 = await redditResponse1.json(
