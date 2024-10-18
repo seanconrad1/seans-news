@@ -22,6 +22,11 @@ const redditURL2 = `https://www.reddit.com/r/programming/${filter}/.json`;
 const redditURL3 = `https://www.reddit.com/r/webdev/${filter}/.json`;
 const redditURL4 = `https://www.reddit.com/r/technology/${filter}/.json`;
 
+const headers = {
+  "User-Agent":
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3",
+};
+
 // [/r/subreddit]/sortreadrss support
 // → [/r/subreddit]/top
 // → [/r/subreddit]/controversial
@@ -33,22 +38,22 @@ app.get("/news", async (req, res) => {
   const nyTimesResponse = await fetch(nyTimes);
   const nyTimesData = await nyTimesResponse.json();
 
-  const redditResponse1 = await fetch(redditURL1);
+  const redditResponse1 = await fetch(redditURL1, { headers });
   const redditData1 = await redditResponse1.json(
     JSON.stringify(redditResponse1)
   );
 
-  const redditResponse2 = await fetch(redditURL2);
+  const redditResponse2 = await fetch(redditURL2, { headers });
   const redditData2 = await redditResponse2.json(
     JSON.stringify(redditResponse2)
   );
 
-  const redditResponse3 = await fetch(redditURL3);
+  const redditResponse3 = await fetch(redditURL3, { headers });
   const redditData3 = await redditResponse3.json(
     JSON.stringify(redditResponse3)
   );
 
-  const redditResponse4 = await fetch(redditURL4);
+  const redditResponse4 = await fetch(redditURL4, { headers });
   const redditData4 = await redditResponse4.json(
     JSON.stringify(redditResponse4)
   );
