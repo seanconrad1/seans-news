@@ -34,6 +34,10 @@ ${nYTimesApiKey}`;
 
 app.get("/authorize-reddit-callback", async (req, res) => {});
 
+app.get("/", (req, res) => {
+  res.send("News!");
+});
+
 // Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
   try {
