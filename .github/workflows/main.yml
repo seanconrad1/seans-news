@@ -1,0 +1,31 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: "22.9.0"
+      # - run: |
+      #     npm install
+      #     npm run build
+
+      - name: Transfer Files
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SEANRAD_SSH_HOST }}
+          username: root
+          key: ${{ secrets.SEANRAD_SSH_PRIVATE_KEY }}
+          source: "."
+          target: "/var/www/html/seans-news"

@@ -52,7 +52,6 @@ app.get("/news", async (req, res) => {
   //   AMZN: "188",
   // };
   const twelveDataObject = {};
-  console.log(twelveData);
 
   Object.keys(twelveData).forEach((key) => {
     twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(2);
