@@ -1,4 +1,6 @@
 import fetch from "node-fetch";
+import util from "util";
+
 export const getRedditPosts = async (subreddit) => {
   try {
     const options = {
@@ -14,7 +16,9 @@ export const getRedditPosts = async (subreddit) => {
       options
     );
     if (!response.ok)
-      throw new Error(`Failed to fetch data for /r/${subreddit}: ${response}`);
+      throw new Error(
+        `Failed to fetch data for /r/${subreddit}: ${util.inspect(response)}`
+      );
 
     const data = await response.json();
     return data;
