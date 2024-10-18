@@ -31,7 +31,9 @@ const headers = {
 // → [/r/subreddit]/top
 // → [/r/subreddit]/controversial
 
-// Step 4: Set up a route to handle a GET request
+const NUMBER_OF_NEWS_STORIES = 3;
+
+// Set up a route to handle a GET request
 app.get("/news", async (req, res) => {
   try {
     // Fetch TwelveData API response
@@ -80,21 +82,24 @@ app.get("/news", async (req, res) => {
     // };
     const twelveDataObject = {};
 
+    // Extract the high price for each stock
     Object.keys(twelveData).forEach((key) => {
       twelveDataObject[key] = Number(twelveData[key]?.values[0]?.high).toFixed(
         2
       );
     });
 
-    // Step 2: Extract keys and values
+    // Extract keys and values
     const stockEntries = Object.entries(twelveDataObject);
 
-    // Step 3: Format the data into the desired string format
+    // Format the data into the desired string format
     const formattedStockPrices = stockEntries
       .map(([symbol, price]) => `${symbol} ${price}`)
       .join(", ");
 
-    const nyTimesObj = [nyTimesData.results[0], nyTimesData.results[1]];
+    const nyTimesObj = [
+      ...nyTimesData.results.slice(0, NUMBER_OF_NEWS_STORIES),
+    ];
 
     // Hot reddit posts:
     // r/${redditData1.data.children[0].data.subreddit}: ${
